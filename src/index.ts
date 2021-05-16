@@ -11,9 +11,6 @@ import { AppResolver } from './resolvers/appresolver';
 
 class Server {
 
-    constructor(){
-
-    }
 
     public async start() {
         const db = new DB();

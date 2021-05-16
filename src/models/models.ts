@@ -5,6 +5,7 @@ import { ObjectType, Field, ID } from 'type-graphql';
 @Entity("users")
 @ObjectType()
 export class Users extends BaseEntity {
+
 	@Field(() => ID)
 	@PrimaryGeneratedColumn("increment")
 	user_id: number | undefined;
@@ -32,11 +33,14 @@ export class Users extends BaseEntity {
 
 
 @Entity("r_providers")
+@ObjectType()
 export class Providers extends BaseEntity{
+
+	@Field(() => ID)
 	@PrimaryGeneratedColumn("increment")
 	provider_id: number | undefined;
 
-	@Field(() => Number)
+	@Field(() => String)
 	@Column()
 	user_id!: number;
 
