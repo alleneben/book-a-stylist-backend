@@ -17,7 +17,11 @@ class Server {
         const db = new DB();
         const server = new ApolloServer({
             typeDefs,
-            resolvers
+            resolvers,
+            context: ({ req }) => {
+                
+                return req;
+            }
         });
         
         const app = express();

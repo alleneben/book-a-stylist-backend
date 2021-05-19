@@ -11,17 +11,30 @@ export const typeDefs = gql`
 	    firstname: String
     }
 
-    input MessageInput {
+    type Provider {
+        user_id: ID
+        provider_id: ID
+        provider_username: String
+        fullname: String
+        lastname: String
+        email: String
+	    firstname: String
+    }
+    
+
+    input Params {
         user_id: ID
         username: String
     }
 
     type Query {
         hello: String!
+        users(params: Params): [User]
+        providers(params: Params): [Provider]
     }
 
     type Mutation {
-        users(params: MessageInput): [User]
+        users(params: Params): [User]
     }
 
 `
