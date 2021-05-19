@@ -9,12 +9,13 @@
     "start": "nodemon -w src --ext ts --exec ts-node src/index.ts"
   },
   "dependencies": {
-    "apollo-server": "^2.24.0",
+    "@types/express": "^4.17.11",
+    "apollo-server-express": "^2.24.0",
     "dotenv": "^9.0.2",
+    "express": "^4.17.1",
     "graphql": "^15.5.0",
     "mysql": "^2.18.1",
     "reflect-metadata": "^0.1.13",
-    "type-graphql": "^1.1.1",
     "typeorm": "^0.2.32"
   },
   "devDependencies": {

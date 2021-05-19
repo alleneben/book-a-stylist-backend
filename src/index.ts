@@ -1,24 +1,33 @@
 import 'reflect-metadata';
-import { ApolloServer } from 'apollo-server';
-import { buildSchema } from 'type-graphql';
+import { ApolloServer } from 'apollo-server-express';
+import express from 'express';
 import dotenv from "dotenv";
 
 dotenv.config();
 import { DB } from  './db/db';
-import { AppResolver } from './resolvers/appresolver';
+import { resolvers } from './resolvers/appresolvers';
+import { typeDefs } from './typedefs/typedefs';
 
 
 
 class Server {
-
-
-    public async start() {
-        const db = new DB();
-        const schema = await buildSchema({resolvers: [AppResolver]});
-        const server = new ApolloServer({schema});
-        await server.listen(4000);
     
-        console.log("server running at port 4000");
+    
+    public start() {
+        const db = new DB();
+        const server = new ApolloServer({
+            typeDefs,
+            resolvers
+        });
+        
+        const app = express();
+
+        server.applyMiddleware({ app })
+        
+        app.listen({ port: 4000}, () => {
+
+            console.log(`server running at http://localhost:4000${server.graphqlPath}`);
+        })
         
     }
 
