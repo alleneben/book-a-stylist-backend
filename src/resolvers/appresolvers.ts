@@ -23,7 +23,12 @@ export const resolvers: IResolvers = {
             return data
         },
 
-        providers: async (_, { params }) => {
+        providers: async (_, { params },context) => {
+            const { authorization: token } = context.headers;
+
+            // const response:any = await new Auth().isTokenValid(token);
+            // if (response.error) throw new Error(response.error);
+
             const pd = JSON.parse(JSON.stringify(params));
             const data = await Providers.find(pd)
             

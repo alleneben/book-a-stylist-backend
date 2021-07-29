@@ -19,6 +19,7 @@ export const typeDefs = gql`
         lastname: String
         email: String
 	    firstname: String
+        address: String
     }
     
 

@@ -16,8 +16,10 @@ export class Auth {
         const client = jwksClient({jwksUri: `https://${process.env.AUTH0_DOMAIN}/.well-known/jwks.json`});
         
         
+        
         client.getSigningKey(header.kid, (err: any, key: any) => {
-
+            if (!key) throw new Error("Coulnot Establish Contact with server");
+            
             const signingKey = key.publicKey || key.rsaPublicKey;
 
             callback(null, signingKey);
