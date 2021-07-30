@@ -37,7 +37,7 @@ export const resolvers: IResolvers = {
     },
 
     Mutation: {
-        users: async (_, { params }) => {
+        users: async (_, { params },context) => {
             const pd = JSON.parse(JSON.stringify(params));
             const data = await Users.find(pd)
             

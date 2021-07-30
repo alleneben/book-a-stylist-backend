@@ -11,6 +11,9 @@ export class Users extends BaseEntity {
 	username!: string;
 
 	@Column()
+	user_uuid!: string;
+
+	@Column()
 	fullname!: string;
 
 

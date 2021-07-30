@@ -5,6 +5,7 @@ export const typeDefs = gql`
     type User {
         user_id: ID
         username: String
+        user_uuid: String
         fullname: String
         lastname: String
         email: String
@@ -26,6 +27,7 @@ export const typeDefs = gql`
     input Params {
         user_id: ID
         username: String
+        user_uuid: String
     }
 
     type Query {

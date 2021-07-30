@@ -2,13 +2,21 @@ import 'reflect-metadata';
 import { ApolloServer } from 'apollo-server-express';
 import express from 'express';
 import dotenv from "dotenv";
+import { auth } from 'express-openid-connect';
 
 dotenv.config();
 import { DB } from  './db/db';
 import { resolvers } from './resolvers/appresolvers';
 import { typeDefs } from './typedefs/typedefs';
 
-
+// const config = {
+//     authRequired: false,
+//     auth0Logout: true,
+//     secret: process.env.API_SECRET_KEY,
+//     baseURL: process.env.APP_URL,
+//     clientID: process.env.CLIENT_ID,
+//     issuerBaseURL: `https://${process.env.AUTH0_DOMAIN}`
+// };
 
 class Server {
     
@@ -26,11 +34,13 @@ class Server {
         
         const app = express();
 
-        server.applyMiddleware({ app })
-        
-        app.listen({ port: 4000}, () => {
 
-            console.log(`server running at http://localhost:4000${server.graphqlPath}`);
+        server.applyMiddleware({ app })
+
+        
+        app.listen({ port: process.env.PORT}, () => {
+
+            console.log(`server running at http://localhost:${process.env.PORT}${server.graphqlPath}`);
         })
         
     }
